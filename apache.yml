@@ -1,0 +1,13 @@
+---
+- name: This playbook will be used for Apache Server
+  hosts: testserver
+  tasks:
+  - name: Installing Apache server
+    package: name=httpd state=installed
+   
+  - name: Coyp index.html file
+    copy: src=/root/index.html dest=/var/www/html/index.html
+
+  - name: Starting service
+    service: name=httpd state=started
+
