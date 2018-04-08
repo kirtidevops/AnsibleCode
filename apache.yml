@@ -3,7 +3,13 @@
   hosts: testserver
   tasks:
   - name: Installing Apache server
-    package: name=httpd state=installed
+    package: name={{item}} state=installed
+    tags: 
+     - package
+    with_items:
+     - httpd
+     - telnet
+     - vsftpd
    
   - name: Coyp index.html file
     copy: src=/root/index.html dest=/var/www/html/index.html
